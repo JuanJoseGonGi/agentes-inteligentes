@@ -23,7 +23,7 @@ class Grid:
         return len(self.grid[position[0]][position[1]]) == 0
 
     def depth_first_search(self, start: Tuple[int, int], end: Tuple[int, int]) -> List[Tuple[int, int]]:
-        if not self.is_valid(start) or not self.is_valid(end):
+        if not self.is_valid_position(start) or not self.is_valid_position(end):
             raise ValueError("Start and end must be valid coordinates")
 
         visited = set()
@@ -37,8 +37,23 @@ class Grid:
 
         for i in range(-1, 2):
             for j in range(-1, 2):
-                if abs(i) != abs(j) and self.is_valid((position[0] + i, position[1] + j)):
+                if abs(i) != abs(j) and self.is_valid_position((position[0] + i, position[1] + j)):
                     neighbors.append((position[0] + i, position[1] + j))
+
+        return neighbors
+
+    def get_orthogonal_neighbors(self, position: Tuple[int, int]) -> List[Tuple[int, int]]:
+        neighbors = []
+
+        for i in range(-1, 2):
+            if i == 0:
+                continue
+
+            if self.is_valid_position((position[0] + i, position[1])):
+                neighbors.append((position[0] + i, position[1]))
+
+            if self.is_valid_position((position[0], position[1] + i)):
+                neighbors.append((position[0], position[1] + i))
 
         return neighbors
 
@@ -49,7 +64,7 @@ class Grid:
         visited.add(start)
         path.append(start)
 
-        for neighbor in self.get_neighbors(start):
+        for neighbor in self.get_orthogonal_neighbors(start):
             if neighbor not in visited and self._depth_first_search(neighbor, end, visited, path):
                 return True
 
