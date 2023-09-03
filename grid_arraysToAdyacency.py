@@ -74,10 +74,18 @@ def crearGrafoConListaAdyacencia(grafoArraysDeArrays):
     return grafo
                 
 
+# entrada = [
+#     [["A"],[],[],[]],
+#     [[],["P"],[],["A"]],
+#     [["A","A"],[],["A"],[]]
+# ]
+
 entrada = [
-    [["A"],[],[],[]],
-    [[],["P"],[],["A"]],
-    [["A","A"],[],["A"],[]]
+    [[],[],[],[],[]],
+    [[],[],[],[],[]],
+    [[],[],[],[],[]],
+    [[],[],[],[],[]],
+    [[],[],[],[],[]],
 ]
 
 crearGrafoConListaAdyacencia(entrada)
