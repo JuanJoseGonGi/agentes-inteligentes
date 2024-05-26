@@ -57,27 +57,35 @@ def crearGrafoConListaAdyacencia(grafoArraysDeArrays):
                 #si es una pared vaya al siguiente nodo
                 continue
             else:    
-                if esPared(grafoArraysDeArrays,i+1,j) != True and i+1>=0:
+                if esPared(grafoArraysDeArrays,i+1,j) != True and i+1>=0 and i+1<len(grafoArraysDeArrays):
                     grafo[str([i,j])].append(str([i+1,j]))  
 
-                if esPared(grafoArraysDeArrays,i-1,j) != True and i-1>=0:
+                if esPared(grafoArraysDeArrays,i-1,j) != True and i-1>=0 and i-1<len(grafoArraysDeArrays):
                     grafo[str([i,j])].append(str([i-1,j])) 
 
-                if esPared(grafoArraysDeArrays,i,j+1) != True and j+1>=0:
+                if esPared(grafoArraysDeArrays,i,j+1) != True and j+1>=0 and j+1<len(grafoArraysDeArrays[0]):
                     grafo[str([i,j])].append(str([i,j+1]))  
 
-                if esPared(grafoArraysDeArrays,i,j-1) != True and j-1>=0:
+                if esPared(grafoArraysDeArrays,i,j-1) != True and j-1>=0 and j-1<len(grafoArraysDeArrays[0]):
                     grafo[str([i,j])].append(str([i,j-1]))   
-
+    print(grafo)
     for k in grafo:
-        print(k,grafo[k])
+       print(k,grafo[k])
     return grafo
                 
 
+# entrada = [
+#     [["A"],[],[],[]],
+#     [[],["P"],[],["A"]],
+#     [["A","A"],[],["A"],[]]
+# ]
+
 entrada = [
-    [["A"],[],[],[]],
-    [[],["P"],[],["A"]],
-    [["A","A"],[],["A"],[]]
+    [[],[],[],[],[]],
+    [[],[],[],[],[]],
+    [[],[],[],[],[]],
+    [[],[],[],[],[]],
+    [[],[],[],[],[]],
 ]
 
 crearGrafoConListaAdyacencia(entrada)
